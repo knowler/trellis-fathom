@@ -1,11 +1,11 @@
 ---
 - name: Download Fathom
   get_url:
-    url: {{ fathom_download_url }}
+    url: "{{ fathom_download_url }}"
     dest: /tmp/fathom-{{ fathom_version }}
 
 - name: Install Fathom
-  command: rync -c --chmod=0755 --info=name /tmp/fathom-{{ fathom_version }} {{ fathom_bin_path }}
+  command: rsync -c --chmod=0755 --info=name /tmp/fathom-{{ fathom_version }} {{ fathom_bin_path }}
   args:
     warn: false
   register: fathom
