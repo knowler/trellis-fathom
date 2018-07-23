@@ -1,7 +1,14 @@
 # [Fathom Analytics](https://usefathom.com) for [Trellis](https://roots.io/trellis)
 
-Fathom Analytics is simple and trustworthy — none of Google's
-BS!
+Fathom Analytics is simple, trustworthy, and privacy-focused —
+none of Google's BS!
+
+**This project is a work in progress. Feel free to chip in!**
+
+## Instructions
+
+_None of the following works right now, but ideally, this would
+be the API for setting it all up._
 
 When setting your `wordpress_sites.yml`, this creates an option
 called: `fathom`.
