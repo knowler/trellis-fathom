@@ -5,6 +5,18 @@ none of Google's BS!
 
 **This project is a work in progress. Feel free to chip in!**
 
+## To do
+
+For reference: [Installing & running Fathom](https://github.com/usefathom/fathom/wiki/Installing-&-running-Fathom)
+
+- [x] Download and install Fathom
+- [ ] Create directory for Fathom site and scaffold `.env`
+- [ ] Create Fathom database
+- [ ] Register Fathom users
+- [ ] Set up NGINX server block
+- [ ] Generate Let's Encrype certificates
+- [ ] Create Fathom service + start it
+
 ## Instructions
 
 _None of the following works right now, but ideally, this would
