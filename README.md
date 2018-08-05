@@ -10,9 +10,9 @@ none of Google's BS!
 For reference: [Installing & running Fathom](https://github.com/usefathom/fathom/wiki/Installing-&-running-Fathom)
 
 - [x] Download and install Fathom
-- [ ] Create directory for Fathom site and scaffold `.env`
-- [ ] Create Fathom database
-- [ ] Register Fathom users
+- [x] Create directory for Fathom site and scaffold `.env`
+- [x] Create Fathom database
+- [x] Register Fathom users
 - [ ] Set up NGINX server block
 - [ ] Generate Let's Encrype certificates
 - [ ] Create Fathom service + start it
@@ -45,9 +45,9 @@ vault_wordpress_sites:
     env:
     # ...
     fathom:
-      - secret: "generateme"
-    fathom_users:
-      - email: user@example.com
+      secret: "generateme"
+      admin_user:
+        email: user@example.com
         password: example_password
 ```
 
