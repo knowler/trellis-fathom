@@ -1,4 +1,5 @@
 ---
+# TODO: Disable Fathom setup when site is not enabled
 - name: Download Fathom
   get_url:
     url: "{{ fathom_download_url }}"
@@ -9,3 +10,46 @@
   args:
     warn: false
   register: fathom
+
+- name: Create site-specific directories for Fathom
+  file:
+    path: "{{ www_root }}/{{ item.key }}/fathom"
+    owner: "{{ web_user }}"
+    group: "{{ web_group }}"
+    mode: 0755
+    state: directory
+  with_dict: "{{ wordpress_sites }}"
+  when: item.value.fathom.enabled
+
+- name: Scaffold .env
+  template:
+    src: env.j2
+    dest: "{{ www_root }}/{{ item.key }}/fathom/.env"
+  with_dict: "{{ wordpress_sites }}"
+  when: item.value.fathom.enabled
+
+# Create Fathom databases
+- import_tasks: database.yml
+  tags: fathom-setup-database
+
+- name: Register Fathom users
+  command: fathom register --email="{{ vault_wordpress_sites[item.key].fathom.admin_user.email }}" --password="{{ vault_wordpress_sites[item.key].fathom.admin_user.password }}"
+  args:
+    chdir: "{{ www_root }}/{{ item.key }}/fathom"
+  with_dict: "{{ wordpress_sites }}"
+
+# SSL
+# TODO: Generate Let's Encrypt certificates
+# - import_tasks: self-signed-certificate.yml
+#   tags: fathom-setup-self-signed-certificate
+
+
+# NGINX
+# TODO:
+# - import_tasks: nginx-includes.yml
+#   tags: [nginx-includes, fathom-setup-nginx]
+# - import_tasks: nginx.yml
+#   tags: fathom-setup-nginx
+
+# TODO:
+# - name: Create Fathom service + start it

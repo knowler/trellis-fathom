@@ -2,3 +2,10 @@ fathom_version: latest
 fathom_bin: fathom-linux-amd64
 fathom_download_url: https://github.com/usefathom/fathom/releases/download/{{ fathom_version }}/{{ fathom_bin }}
 fathom_bin_path: /usr/bin/fathom
+fathom_debug: false
+fathom_port: 9000
+fathom_db_driver: mysql
+fathom_db_host: "{{ site_env.db_host }}"
+fathom_db_sslmode: false
+
+site_uses_local_db: "{{ site_env.db_host == 'localhost' }}"
